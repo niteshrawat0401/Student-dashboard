@@ -28,7 +28,7 @@ authRouter.post("/signup", async (req, res) => {
 // Login
 authRouter.post("/login", async (req, res) => {
   const { userName, passWord, userType } = req.body;
-  const user = await Users.findOne({ userName: userName });
+  const user = await Users.findOne({  userType: userType });
   if (!user) {
     return res.status(400).json({ msg: "User not found" });
   }
@@ -51,7 +51,6 @@ authRouter.post("/login", async (req, res) => {
           accessToken: accessToken,
           refreshToken: refreshToken,
           userName: user.userName,
-          user
         });
     }
     else{
