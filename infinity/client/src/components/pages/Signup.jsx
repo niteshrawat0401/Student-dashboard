@@ -4,9 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 let init = {
-  name: "",
   userName: "",
   passWord: "",
+  userType: ""
 };
 
 export const Signup = () => {
@@ -36,14 +36,6 @@ export const Signup = () => {
     <div>
       <h2>Register User</h2>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          onChange={handleChange}
-          value={signup.name}
-          required
-        />
         <br />
         <input
           type="text"
@@ -63,6 +55,12 @@ export const Signup = () => {
           required
         />
         <br />
+        <select name="userType" onChange={handleChange} required style={{width:"16.5%"}}>
+          <option>Type</option>
+          <option value="Customer">Customer</option>
+          <option value="Employee">Employee</option>
+        </select>
+        <br/>
         <input type="submit" value="Sign Up" />
       </form>
       <p>

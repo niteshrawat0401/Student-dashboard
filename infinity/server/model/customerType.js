@@ -3,15 +3,15 @@ const { model, Schema } = require("mongoose");
 const customerProSchema = new Schema({
   productType: {
     type: String,
-    required: true,
+    // required: true,
   },
   issueType: {
     type: String,
-    required: true,
+    // required: true,
   },
-  IssueDescription: {
+  issueDescription: {
     type: String,
-    required: true,
+    // required: true,
   },
   policyUpload: {
     type: String,

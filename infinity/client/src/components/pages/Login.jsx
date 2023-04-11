@@ -6,10 +6,12 @@ import { useEffect, useState } from "react";
 let init = {
   userName: "",
   passWord: "",
+  userType: ""
 };
 
 export const Login = () => {
   const [login, setlogin] = useState(init);
+  const navigate = useNavigate()
 
   const handleChanged = (e) => {
     const { name, value } = e.target;
@@ -23,11 +25,13 @@ export const Login = () => {
       .then((res) => {
         console.log(res.data);
         setlogin(res.data);
+        console.log(res.data);
         setlogin({ ...init });
         alert("Login sucessfully");
+        navigate("/home")
       })
       .catch((err) => {
-        alert("Something went wrong");
+        alert("Type not found");
         console.log("error", err);
       });
   };
@@ -53,10 +57,16 @@ export const Login = () => {
           required
         />
         <br />
+        <select name="userType" onChange={handleChanged} required style={{width:"16.5%"}}>
+          <option>Type</option>
+          <option value="Customer">Customer</option>
+          <option value="Employee">Employee</option>
+        </select>
+        <br/>
         <input type="submit" value="Log In" />
       </form>
       <p>
-        Create an account <Link to={"/signup"}>Signup</Link>
+        Create an account <Link to={"/"}>Signup</Link>
       </p>
     </div>
   );
