@@ -21,3 +21,22 @@
     font-size: 16px;
     cursor: pointer;
 }
+.appendtable{
+    border: 1px solid black;
+    width: 45rem;
+    margin: auto;
+    margin-top: 4rem;
+}
+.appendtable table{
+    width: 45rem;
+    /* margin: auto; */
+}
+.appendtable tr th{
+    border: 1px solid black;
+    /* width: 10rem; */
+}
+.appendtable tr td{
+    border: 1px solid black;
+    /* width: 10rem; */
+    text-align: center;
+}

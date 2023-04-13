@@ -29,6 +29,22 @@ export const Student = () => {
         <input className='studentsubmit' type="submit" value="Add Student" />
       </form>
     </div>
+      
+      <div className='appendtable'>
+    <table>
+      <thead>
+        <tr><th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Nitesh Singh Rawat</td>
+        <td>niteshrawat0401@gmail</td>
+        <td>1236547894</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
     </>
   )
 }
