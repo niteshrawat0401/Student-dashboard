@@ -176,10 +176,10 @@ console.log(productType);
         <label>Issue Description:</label>
         <textarea name='issueDescription' value={issueDescription} onChange={handleIssueDescriptionChange}></textarea>
       </div>
-      {/* <div>
+      <div>
         <label htmlFor="policy-document">Policy Upload:</label>
-        <input type="file" id="policy-document" name='policyUpload' accept=".pdf,.doc,.docx,.jpg,.png" onChange={handlePolicyDocumentChange} required />
-      </div> */}
+         <input type="file" id="policy-document" name='policyUpload' accept=".pdf,.doc,.docx,.jpg,.png" onChange={handlePolicyDocumentChange} required />
+      </div>
       <button type="submit">Submit</button>
     </form>
   );

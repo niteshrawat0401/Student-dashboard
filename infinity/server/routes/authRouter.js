@@ -51,6 +51,7 @@ authRouter.post("/login", async (req, res) => {
           accessToken: accessToken,
           refreshToken: refreshToken,
           userName: user.userName,
+          userID : user._id
         });
     }
     else{

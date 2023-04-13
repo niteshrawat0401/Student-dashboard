@@ -57,8 +57,8 @@ export const Signup = () => {
         <br />
         <select name="userType" onChange={handleChange} required style={{width:"16.5%"}}>
           <option>Type</option>
-          <option value="Customer">Customer</option>
-          <option value="Employee">Employee</option>
+          <option value="Teacher">Teacher</option>
+          <option value="Student">Student</option>
         </select>
         <br/>
         <input type="submit" value="Sign Up" />
