@@ -28,5 +28,17 @@ studentRouter.post("/student", async(req, res)=>{
   }
 })
 
+// Get students
+studentRouter.get("/getStudent", async(req, res)=>{
+  let {name, email, mobile} = req.body;
+  let getStudents = await Student.find({});
+  try {
+    if(getStudents){
+      return res.status(200).json({ msg: "Successfully student get", getStudents})
+    }
+  } catch (error) {
+    return res.status(500).json({ msg: "Something went wrong", error})
+  }
+})
 
 module.exports = studentRouter
