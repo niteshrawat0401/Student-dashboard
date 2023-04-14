@@ -1,50 +1,92 @@
-import React from 'react'
-import "./css/students.css"
+import React, { useEffect, useState } from "react";
+import { createStudents } from "../../action/student";
+import axios from "axios";
+import "./css/students.css";
+import empty from "./empty.jpg";
 
+let init = {
+  name: "",
+  email: "",
+  mobile: "",
+};
 export const Student = () => {
+  const [student, setStudent] = useState(init);
+  const [studentData, setStudentData] = useState([]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setStudent({ ...student, [name]: value });
+  };
+
+  const { name, email, mobile } = student;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:8080/createstudent/student", student)
+      .then((res) => {
+        getStudents();
+        console.log(res.data.createStudent);
+        setStudent({ ...init });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+ 
+
+  useEffect(() => {
+   }, []);
+
   return (
     <>
-    <div className='studentFormdiv'>
-    <h3>Add Student</h3>
-      <form className='innerForm'>
-        <div><label>Name</label>
-        <br/>
-        <input name='studentName' placeholder='Studnet Name'/>
-        </div>
-        <br/>
-        <div><label>Email</label>
-        <br/>
-        <input name='mail' placeholder='Email'/>
-        </div>
-        <br/>
-        <div><label>Mobile</label>
-        <br/>
-        <input name='mobile' placeholder='mobile'/>
-        </div>
-        <br/>
-        {/* <label>Name</label> */}
-        {/* <br/> */}
-        {/* <input name='studentName' placeholder='Studnet Name'/>
-        <br/> */}
-        <input className='studentsubmit' type="submit" value="Add Student" />
-      </form>
-    </div>
+      <div className="studentFormdiv">
+        <h3>Add Student</h3>
+        <form onSubmit={handleSubmit} className="innerForm">
+          <div>
+            <label>Name</label>
+            <br />
+            <input
+              type="text"
+              name="name"
+              placeholder="Studnet Name"
+              value={name}
+              onChange={handleChange}
+            />
+          </div>
+          <br />
+          <div>
+            <label>Email</label>
+            <br />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={email}
+              onChange={handleChange}
+            />
+          </div>
+          <br />
+          <div>
+            <label>Mobile</label>
+            <br />
+            <input
+              type="number"
+              name="mobile"
+              placeholder="Mobile"
+              value={mobile}
+              onChange={handleChange}
+            />
+          </div>
+          <br />
+          <input className="studentsubmit" type="submit" value="Add Student" />
+        </form>
+      </div>
+
+      <div className="appendtable">
       
-      <div className='appendtable'>
-    <table>
-      <thead>
-        <tr><th>Name</th>
-        <th>Email</th>
-        <th>Mobile</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Nitesh Singh Rawat</td>
-        <td>niteshrawat0401@gmail</td>
-        <td>1236547894</td>
-        </tr>
-      </tbody>
-    </table>
-    </div>
+      </div>
     </>
-  )
-}
+  );
+};
