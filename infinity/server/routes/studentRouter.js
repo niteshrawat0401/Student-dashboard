@@ -55,4 +55,17 @@ studentRouter.patch("/:id/student", async(req, res)=>{
   }
 })
 
+// Delete students
+studentRouter.delete("/:id/student", async(req, res)=>{
+  let {id} = req.params;
+  const deleteStudent = await Student.findByIdAndRemove({ _id: id});
+  try {
+    if(deleteStudent){
+      return res.status(200).json({ msg: "Delete successfully", deleteStudent})
+    }
+  } catch (error) {
+    return res.status(500).json({ msg: "Try again later", error})
+  }
+})
+
 module.exports = studentRouter
