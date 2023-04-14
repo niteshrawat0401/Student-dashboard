@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { createStudents } from "../../action/student";
+// import { createStudents } from "../../action/student";
 import axios from "axios";
 import "./css/students.css";
-import empty from "./empty.jpg";
+import empty from "../../assets/empty.jpg";
+import spinner from "../../assets/spinner.gif"
 
 let init = {
   name: "",
@@ -12,6 +13,7 @@ let init = {
 export const Student = () => {
   const [student, setStudent] = useState(init);
   const [studentData, setStudentData] = useState([]);
+  const [loader, setLoader] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,10 +37,12 @@ export const Student = () => {
   };
 
   const getStudents = () => {
+    setLoader(true)
     axios
       .get("http://localhost:8080/getallstudent/getStudent")
       .then((res) => {
         setStudentData(res.data.getStudents);
+        setLoader(false)
         console.log(res.data.getStudents);
       })
       .catch((err) => {
@@ -96,7 +100,40 @@ export const Student = () => {
       </div>
 
       <div className="appendtable">
-        {studentData.length !== 0 ? (
+        {
+          loader ? (
+            <div style={{ textAlign: "center" }}>
+              <img  style={{ textAlign: "center",width: "30%" }} src={spinner}/>
+              </div>
+          ) : (
+            <table>
+               <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+              </tr>
+            </thead>
+
+           <tbody>
+           {
+          //  studentData.length > 0 ? (
+
+          //  )
+           studentData.map((ele) => (
+                <tr>
+                  <td>{ele.name}</td>
+                  <td>{ele.email}</td>
+                  <td>{ele.mobile}</td>
+                </tr>
+              ))
+            }
+           </tbody>
+            </table>
+          )
+        }
+        {/* {loader ? (
+          // <img src={spinner} alt=""/> :
           <table>
             <thead>
               <tr>
@@ -126,7 +163,7 @@ export const Student = () => {
               Data not matched
             </h3>
           </div>
-        )}
+        )} */}
       </div>
     </>
   );
