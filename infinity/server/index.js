@@ -19,6 +19,7 @@ app.use(express.json());
 
 app.use("/auth", authRouter);
 app.use("/createstudent", studentRouter);
+app.use("/editstudent", studentRouter);
 app.get("/", (req, res) => res.send("hello"));
 
 app.listen(8080, async () => {

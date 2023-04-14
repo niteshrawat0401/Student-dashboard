@@ -41,4 +41,18 @@ studentRouter.get("/getStudent", async(req, res)=>{
   }
 })
 
+// Edit students
+studentRouter.patch("/:id/student", async(req, res)=>{
+  let {id} = req.params;
+  let payload = req.body;
+  const editStudent = await Student.findByIdAndUpdate({ _id: id}, payload);
+  try {
+    if(editStudent){
+      return res.status(200).json({ msg: "Edit data successfully", editStudent})
+    }
+  } catch (error) {
+    return res.status(500).json({ msg: "Try again later", error})
+  }
+})
+
 module.exports = studentRouter
