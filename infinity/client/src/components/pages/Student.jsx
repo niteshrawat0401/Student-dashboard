@@ -96,7 +96,37 @@ export const Student = () => {
       </div>
 
       <div className="appendtable">
-      
+        {studentData.length !== 0 ? (
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+              </tr>
+            </thead>
+            <tbody>
+              {studentData.map((ele) => (
+                <tr>
+                  <td>{ele.name}</td>
+                  <td>{ele.email}</td>
+                  <td>{ele.mobile}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <div style={{ textAlign: "center" }}>
+            <img
+              style={{ width: "70%" }}
+              src={empty}
+              alt="empty data"
+            />
+            <h3 style={{ position: "relative", top: "-3.5rem" }}>
+              Data not matched
+            </h3>
+          </div>
+        )}
       </div>
     </>
   );
