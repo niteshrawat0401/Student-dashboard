@@ -34,10 +34,21 @@ export const Student = () => {
       });
   };
 
- 
+  const getStudents = () => {
+    axios
+      .get("http://localhost:8080/getallstudent/getStudent")
+      .then((res) => {
+        setStudentData(res.data.getStudents);
+        console.log(res.data.getStudents);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
-   }, []);
+    getStudents();
+  }, []);
 
   return (
     <>
