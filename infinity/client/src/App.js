@@ -6,6 +6,7 @@ import {Login} from "./components/pages/Login"
 import { Home } from './components/Home/Home';
 import { Navbar } from './components/pages/Navbar';
 import { Student } from './components/pages/Student';
+import { Editstudent } from './components/pages/student/Editstudent';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path='/login' element={<Login/>}/>
         <Route path='/student' element={<Student/>}/>
         <Route path='/home' element={<Home/>}/>
+        <Route path='/edit/:id' element={<Editstudent/>}/>
       </Routes>
     </div>
   );

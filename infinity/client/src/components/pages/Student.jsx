@@ -6,6 +6,7 @@ import empty from "../../assets/empty.jpg";
 import spinner from "../../assets/spinner.gif";
 import trash from "../../assets/trash.png";
 import { MdDelete } from 'react-icons/md';
+import { Link } from "react-router-dom";
 
 
 let init = {
@@ -152,7 +153,7 @@ export const Student = () => {
                       <td>{ele.name}</td>
                       <td>{ele.email}</td>
                       <td>{ele.mobile}</td>
-                      <td onClick={()=>handleEdit(ele._id)}>Edit</td>
+                      <td ><Link to={`/edit/${ele._id}`}>Edit</Link></td>
                       <td><img style={{ height: "1.5rem",width: "1.5rem"}} src={trash} onClick={()=>handleDelete(ele._id)}/></td>
                       {/* <td><MdDelete/></td> */}
 

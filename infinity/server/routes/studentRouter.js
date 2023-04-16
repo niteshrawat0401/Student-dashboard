@@ -41,6 +41,7 @@ studentRouter.get("/getStudent", async(req, res)=>{
   }
 })
 
+// Get single data
 studentRouter.get("/:id/student", async(req, res)=>{
   let {id} = req.params;
   let payload = req.body;
