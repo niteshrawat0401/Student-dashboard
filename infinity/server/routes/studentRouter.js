@@ -56,7 +56,7 @@ studentRouter.get("/:id/student", async(req, res)=>{
 })
 
 // Edit students
-studentRouter.patch("/:id/student", async(req, res)=>{
+studentRouter.put("/:id/student", async(req, res)=>{
   let {id} = req.params;
   let payload = req.body;
   const editStudent = await Student.findByIdAndUpdate({ _id: id}, payload);

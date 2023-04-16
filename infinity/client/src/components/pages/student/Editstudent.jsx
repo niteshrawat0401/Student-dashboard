@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from "axios"
 
 let init = {
@@ -10,13 +11,34 @@ let init = {
 export const Editstudent = () => {
   const [student, setStudent] = useState(init);
   const {id} = useParams()
-  console.log(id);
+  const navigate = useNavigate()
 
   const { name, email, mobile } = student;
-  console.log(student);
 
-
- 
+  const handleEdit = (e) =>{
+    e.preventDefault()
+    fetch(`http://localhost:8080/editstudent/${id}/student`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, mobile }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          // Update the post in the parent component's state
+          console.log(data);
+          navigate("/student")
+        })
+        .catch((error) => {
+          console.error("There was an error updating the post:", error);
+        });
+  }
 
 
 const handleChange = (e) => {
