@@ -48,7 +48,7 @@ const handleChange = (e) => {
   return (
     <>
          <div className="studentFormdiv">
-        <h3>Add Student</h3>
+        <h3>Edit Student</h3>
         <form onSubmit={handleEdit} className="innerForm">
           <div>
             <label>Name</label>
@@ -89,7 +89,7 @@ const handleChange = (e) => {
             />
           </div>
           <br />
-          <input className="studentsubmit" type="submit" value="Add Student" />
+          <input className="studentsubmit" type="submit" value="Edit Student" />
         </form>
       </div>
     </>

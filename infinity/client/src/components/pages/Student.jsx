@@ -144,6 +144,7 @@ export const Student = () => {
                     <th>Mobile</th>
                     <th>Edit</th>
                     <th>Delete</th>
+                    <th>Active</th>
                   </tr>
                 </thead>
 
@@ -156,7 +157,18 @@ export const Student = () => {
                       <td ><Link to={`/edit/${ele._id}`}>Edit</Link></td>
                       <td><img style={{ height: "1.5rem",width: "1.5rem"}} src={trash} onClick={()=>handleDelete(ele._id)}/></td>
                       {/* <td><MdDelete/></td> */}
-
+                      <td  style={{
+                        padding: "10px 10px 10px 10px",
+                        "font-size": "15px",
+                        "cursor":"pointer"}}>
+                      <label class="switch">
+                        {ele.isActive == true ?
+                          <input type="checkbox" checked/> :
+                          <input type="checkbox"/>
+                        }
+                        <span className="slider round"></span>
+                      </label>
+                           </td>
                     </tr>
                   </tbody>
                 ))}

@@ -82,4 +82,20 @@ studentRouter.delete("/:id/student", async(req, res)=>{
   }
 })
 
+// Checked status
+studentRouter.put("/:id/active", async(req, res)=>{
+  let {id} = req.params;
+  let checkActive = await Student.findOne({ _id :id});
+   checkActive.active= checkActive.active ?  false : true;
+   checkActive.save()
+  try {
+    if(checkActive){
+      return res.status(200).json({ msg: "Active student", checkActive});
+    }  
+  } catch (error) {
+    return res.status(500).json({ msg: "Try again later", error})
+  }
+  
+})
+
 module.exports = studentRouter
