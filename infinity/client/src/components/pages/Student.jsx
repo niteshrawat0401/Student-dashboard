@@ -3,7 +3,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./css/students.css";
 import empty from "../../assets/empty.jpg";
-import spinner from "../../assets/spinner.gif"
+import spinner from "../../assets/spinner.gif";
+import trash from "../../assets/trash.png";
+import { MdDelete } from 'react-icons/md';
+
 
 let init = {
   name: "",
@@ -37,12 +40,12 @@ export const Student = () => {
   };
 
   const getStudents = () => {
-    setLoader(true)
+    setLoader(true);
     axios
       .get("http://localhost:8080/getallstudent/getStudent")
       .then((res) => {
         setStudentData(res.data.getStudents);
-        setLoader(false)
+        setLoader(false);
         console.log(res.data.getStudents);
       })
       .catch((err) => {
@@ -53,6 +56,28 @@ export const Student = () => {
   useEffect(() => {
     getStudents();
   }, []);
+
+  const handleDelete = (id) =>{
+    axios.delete(`http://localhost:8080/deletestudent/${id}/student`)
+    .then((res)=>{
+      console.log(res.data);
+      getStudents()
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+  }
+
+  const handleEdit = (id) =>{
+    axios.patch(`http://localhost:8080/editstudent/${id}/student`)
+    .then((res)=>{
+      console.log(res.data);
+      // getStudents()
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+  }
 
   return (
     <>
@@ -68,6 +93,7 @@ export const Student = () => {
               placeholder="Studnet Name"
               value={name}
               onChange={handleChange}
+              required
             />
           </div>
           <br />
@@ -80,6 +106,7 @@ export const Student = () => {
               placeholder="Email"
               value={email}
               onChange={handleChange}
+              required
             />
           </div>
           <br />
@@ -92,6 +119,7 @@ export const Student = () => {
               placeholder="Mobile"
               value={mobile}
               onChange={handleChange}
+              required
             />
           </div>
           <br />
@@ -100,70 +128,48 @@ export const Student = () => {
       </div>
 
       <div className="appendtable">
-        {
-          loader ? (
-            <div style={{ textAlign: "center" }}>
-              <img  style={{ textAlign: "center",width: "30%" }} src={spinner}/>
-              </div>
-          ) : (
-            <table>
-               <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Mobile</th>
-              </tr>
-            </thead>
-
-           <tbody>
-           {
-          //  studentData.length > 0 ? (
-
-          //  )
-           studentData.map((ele) => (
-                <tr>
-                  <td>{ele.name}</td>
-                  <td>{ele.email}</td>
-                  <td>{ele.mobile}</td>
-                </tr>
-              ))
-            }
-           </tbody>
-            </table>
-          )
-        }
-        {/* {loader ? (
-          // <img src={spinner} alt=""/> :
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Mobile</th>
-              </tr>
-            </thead>
-            <tbody>
-              {studentData.map((ele) => (
-                <tr>
-                  <td>{ele.name}</td>
-                  <td>{ele.email}</td>
-                  <td>{ele.mobile}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        ) : (
+        {loader ? (
           <div style={{ textAlign: "center" }}>
-            <img
-              style={{ width: "70%" }}
-              src={empty}
-              alt="empty data"
-            />
-            <h3 style={{ position: "relative", top: "-3.5rem" }}>
-              Data not matched
-            </h3>
+            <img style={{ textAlign: "center", width: "30%" }} src={spinner} />
           </div>
-        )} */}
+        ) : (
+          <div>
+            {studentData.length != 0 ? (
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+
+                {studentData.map((ele) => (
+                  <tbody key={ele._id}>
+                    <tr>
+                      <td>{ele.name}</td>
+                      <td>{ele.email}</td>
+                      <td>{ele.mobile}</td>
+                      <td onClick={()=>handleEdit(ele._id)}>Edit</td>
+                      <td><img style={{ height: "1.5rem",width: "1.5rem"}} src={trash} onClick={()=>handleDelete(ele._id)}/></td>
+                      {/* <td><MdDelete/></td> */}
+
+                    </tr>
+                  </tbody>
+                ))}
+              </table>
+            ) : (
+              <div style={{ textAlign: "center" }}>
+                <img style={{ width: "70%" }} src={empty} alt="empty data" />
+                <h3 style={{ position: "relative", top: "-3.5rem" }}>
+                  Data not matched
+                </h3>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </>
   );

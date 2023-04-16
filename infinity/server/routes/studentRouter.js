@@ -6,15 +6,15 @@ const studentRouter = Router();
 // Post students
 studentRouter.post("/student", async(req, res)=>{
   let { name, email, mobile} = req.body;
-  // let isUniqueEmail = (await Student.countDocuments({ email}) > 0 ? true : false)
-  // if(isUniqueEmail){
-  //   return res.status(400).json({msg: "Email alredy present", isUniqueEmail})
-  // }
+  let isUniqueEmail = (await Student.countDocuments({ email}) > 0 ? true : false)
+  if(isUniqueEmail){
+    return res.status(400).json({msg: "Email alredy present", isUniqueEmail})
+  }
 
-  // let isUniquemobile = (await Student.countDocuments( {mobile} ) > 0? true : false);
-  // if(isUniquemobile){
-  //   return res.status(400).json({msg: "Mobile no alredy present"})
-  // }
+  let isUniquemobile = (await Student.countDocuments( {mobile} ) > 0? true : false);
+  if(isUniquemobile){
+    return res.status(400).json({msg: "Mobile no alredy present"})
+  }
   let createStudent = await Student.create({
     name,email,mobile
   })
@@ -38,6 +38,19 @@ studentRouter.get("/getStudent", async(req, res)=>{
     }
   } catch (error) {
     return res.status(500).json({ msg: "Something went wrong", error})
+  }
+})
+
+studentRouter.get("/:id/student", async(req, res)=>{
+  let {id} = req.params;
+  let payload = req.body;
+  const getsingleStudent = await Student.findByIdAndUpdate({ _id: id}, payload);
+  try {
+    if(getsingleStudent){
+      return res.status(200).json({ msg: "Edit data successfully", getsingleStudent})
+    }
+  } catch (error) {
+    return res.status(500).json({ msg: "Try again later", error})
   }
 })
 
