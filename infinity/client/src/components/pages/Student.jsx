@@ -145,6 +145,7 @@ export const Student = () => {
                     <th>Edit</th>
                     <th>Delete</th>
                     <th>Active</th>
+                    <th>Status</th>
                   </tr>
                 </thead>
 
@@ -168,6 +169,14 @@ export const Student = () => {
                         }
                         <span className="slider round"></span>
                       </label>
+                           </td>
+                           <td>
+                              {
+                                ele.active == true ? (
+                                  <p style={{color: "green"}}>Active</p>
+                                  ) :
+                                  <p style={{color: "red"}}>Inactive</p>
+                              }
                            </td>
                     </tr>
                   </tbody>
