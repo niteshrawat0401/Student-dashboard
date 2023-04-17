@@ -47,7 +47,7 @@ export const Student = () => {
       .then((res) => {
         setStudentData(res.data.getStudents);
         setLoader(false);
-        console.log(res.data.getStudents);
+        // console.log(res.data.getStudents);
       })
       .catch((err) => {
         console.log(err);
@@ -69,11 +69,11 @@ export const Student = () => {
     })
   }
 
-  const handleEdit = (id) =>{
-    axios.patch(`http://localhost:8080/editstudent/${id}/student`)
+  const handleActive = (id) =>{
+    axios.put(`http://localhost:8080/checkactive/${id}/active`)
     .then((res)=>{
-      console.log(res.data);
-      // getStudents()
+      // console.log(res.data);
+      getStudents()
     })
     .catch((err)=>{
       console.log(err);
@@ -159,10 +159,10 @@ export const Student = () => {
                       {/* <td><MdDelete/></td> */}
                       <td  style={{
                         padding: "10px 10px 10px 10px",
-                        "font-size": "15px",
-                        "cursor":"pointer"}}>
-                      <label class="switch">
-                        {ele.isActive == true ?
+                        fontSize: "15px",
+                        cursor:"pointer"}}>
+                      <label onClick={()=>handleActive(ele._id)} className="switch">
+                        {ele.active == true ?
                           <input type="checkbox" checked/> :
                           <input type="checkbox"/>
                         }
