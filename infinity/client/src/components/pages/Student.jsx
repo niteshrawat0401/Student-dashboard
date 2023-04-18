@@ -7,6 +7,7 @@ import spinner from "../../assets/spinner.gif";
 import trash from "../../assets/trash.png";
 import { MdDelete } from 'react-icons/md';
 import { Link } from "react-router-dom";
+import ReactPaginate from 'react-paginate';
 
 
 let init = {
@@ -18,6 +19,8 @@ export const Student = () => {
   const [student, setStudent] = useState(init);
   const [studentData, setStudentData] = useState([]);
   const [loader, setLoader] = useState(false);
+  const [pageCount, setPageCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,7 +35,7 @@ export const Student = () => {
       .post("http://localhost:8080/createstudent/student", student)
       .then((res) => {
         getStudents();
-        console.log(res.data.createStudent);
+        // console.log(res.data.createStudent);
         setStudent({ ...init });
       })
       .catch((err) => {
@@ -79,6 +82,28 @@ export const Student = () => {
       console.log(err);
     })
   }
+
+  const fetchPosts = async (page) => {
+    await axios.get(`http://localhost:8080/student/pagination?page=${page}`)
+    .then((res)=>{
+      console.log(res.data.pageFind);
+      setStudentData(res.data.pageFind);
+      setPageCount(res.data.totalData);
+      setCurrentPage(res.data.totalData - 1);
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+   
+  };
+
+  useEffect(() => {
+    fetchPosts(1);
+  }, []);
+
+  const handlePageClick = (data) => {
+    fetchPosts(data.selected + 1);
+  };
 
   return (
     <>
@@ -135,7 +160,9 @@ export const Student = () => {
           </div>
         ) : (
           <div>
+            <>
             {studentData.length != 0 ? (
+              <>
               <table>
                 <thead>
                   <tr>
@@ -180,8 +207,19 @@ export const Student = () => {
                            </td>
                     </tr>
                   </tbody>
+                    
                 ))}
               </table>
+               
+              <ReactPaginate
+              pageCount={pageCount}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={1}
+              onPageChange={handlePageClick}
+              forcePage={currentPage}
+              /></>
+               
+                     
             ) : (
               <div style={{ textAlign: "center" }}>
                 <img style={{ width: "70%" }} src={empty} alt="empty data" />
@@ -190,6 +228,7 @@ export const Student = () => {
                 </h3>
               </div>
             )}
+            </>
           </div>
         )}
       </div>

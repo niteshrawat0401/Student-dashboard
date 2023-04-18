@@ -18,6 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use("/auth", authRouter);
+app.use("/student", studentRouter);
 app.use("/createstudent", studentRouter);
 app.use("/getallstudent", studentRouter);
 app.use("/getsinglestudent", studentRouter);

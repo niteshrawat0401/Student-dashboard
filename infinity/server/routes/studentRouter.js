@@ -17,7 +17,7 @@ studentRouter.post("/student", async(req, res)=>{
   }
   let createStudent = await Student.create({
     name,email,mobile
-  })
+  },)
 
   try {
     if(createStudent){
@@ -95,7 +95,71 @@ studentRouter.put("/:id/active", async(req, res)=>{
   } catch (error) {
     return res.status(500).json({ msg: "Try again later", error})
   }
-  
 })
 
+// pagination
+  // studentRouter.get("/pagination", async(req, res)=>{
+  //   const { page= 2, limit= 5} = req.query;
+  //   try {
+  //     let studenPagi = await Student.find({})
+  //     .limit(limit * 1)
+  //     .skip((page - 1) * limit )
+  //     const total = studenPagi.length;
+  //     return res.status(200).json({ msg: "Pagination", total, studenPagi})
+  //   } catch (error) {
+  //     return res.status(200).json({ msg: "Error while getting data", error})
+  //   }
+  // })
+
+  studentRouter.get("/pagination", async(req, res)=>{
+  let pageSize= 5;
+  let page= parseInt(req.query.page || 0);
+  let totalData= await Student.countDocuments();
+  let pageFind= await Student.find()
+  .limit(pageSize).skip(pageSize * page);
+  try {
+    return res.status(201).send({
+      success: true, totalData: Math.ceil( totalData / pageSize),
+      pageFind: pageFind
+    })
+  } catch (error) {
+    return res.status(401).send({ message: "Data not found" })
+  }
+})
+
+// studentRouter.get('/pagination', async (req, res) => {
+//   try {
+//     const page = parseInt(req.query.page) || 1;
+//     const limit = parseInt(req.query.limit) || 5;
+
+//     const startIndex = (page - 1) * limit;
+//     const endIndex = page * limit;
+
+//     const results = {};
+
+//     results.results = await Student.find({})
+//       .sort({ createdAt: -1 })
+//       .skip(startIndex)
+//       .limit(limit)
+//       .exec();
+
+//     if (endIndex < (await Student.countDocuments().exec())) {
+//       results.next = {
+//         page: page + 1,
+//         limit: limit,
+//       };
+//     }
+
+//     if (startIndex > 0) {
+//       results.previous = {
+//         page: page - 1,
+//         limit: limit,
+//       };
+//     }
+
+//     res.json(results);
+//   } catch (err) {
+//     res.status(500).json({ message: err.message });
+//   }
+// });
 module.exports = studentRouter
