@@ -15,6 +15,7 @@ export const Editstudent = () => {
 
   const { name, email, mobile } = student;
 
+  // Edit
   const handleEdit = (e) =>{
     e.preventDefault()
     fetch(`http://localhost:8080/editstudent/${id}/student`, {

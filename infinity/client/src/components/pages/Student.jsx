@@ -28,7 +28,7 @@ export const Student = () => {
   };
 
   const { name, email, mobile } = student;
-
+// Submit
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -42,7 +42,7 @@ export const Student = () => {
         console.log(err);
       });
   };
-
+// Get students 
   const getStudents = () => {
     setLoader(true);
     axios
@@ -60,7 +60,7 @@ export const Student = () => {
   useEffect(() => {
     getStudents();
   }, []);
-
+// Delete
   const handleDelete = (id) =>{
     axios.delete(`http://localhost:8080/deletestudent/${id}/student`)
     .then((res)=>{
@@ -72,6 +72,7 @@ export const Student = () => {
     })
   }
 
+// CheckActive
   const handleActive = (id) =>{
     axios.put(`http://localhost:8080/checkactive/${id}/active`)
     .then((res)=>{
