@@ -20,7 +20,7 @@ export const Student = () => {
   const [studentData, setStudentData] = useState([]);
   const [loader, setLoader] = useState(false);
   const [pageCount, setPageCount] = useState(0);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -48,7 +48,7 @@ export const Student = () => {
     axios
       .get("http://localhost:8080/getallstudent/getStudent")
       .then((res) => {
-        setStudentData(res.data.getStudents);
+        // setStudentData(res.data.getStudents);
         setLoader(false);
         // console.log(res.data.getStudents);
       })
@@ -58,7 +58,7 @@ export const Student = () => {
   };
 
   useEffect(() => {
-    getStudents();
+    // getStudents();
   }, []);
 // Delete
   const handleDelete = (id) =>{
@@ -77,7 +77,8 @@ export const Student = () => {
     axios.put(`http://localhost:8080/checkactive/${id}/active`)
     .then((res)=>{
       // console.log(res.data);
-      getStudents()
+      // getStudents()
+      fetchPosts()
     })
     .catch((err)=>{
       console.log(err);
@@ -85,12 +86,14 @@ export const Student = () => {
   }
 
   const fetchPosts = async (page) => {
-    await axios.get(`http://localhost:8080/student/pagination?page=${page}`)
+    setLoader(true);
+    await axios.get(`http://localhost:8080/student/pagination?page=${currentPage}`)
     .then((res)=>{
       console.log(res.data.pageFind);
       setStudentData(res.data.pageFind);
       setPageCount(res.data.totalData);
       setCurrentPage(res.data.totalData - 1);
+      setLoader(false);
     })
     .catch((err)=>{
       console.log(err);
@@ -100,9 +103,10 @@ export const Student = () => {
 
   useEffect(() => {
     fetchPosts(1);
-  }, []);
+  }, [currentPage]);
 
   const handlePageClick = (data) => {
+    // console.log("handl", data);
     fetchPosts(data.selected + 1);
   };
 

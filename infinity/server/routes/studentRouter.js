@@ -112,6 +112,20 @@ studentRouter.put("/:id/active", async(req, res)=>{
   // })
 
   studentRouter.get("/pagination", async(req, res)=>{
+  // let pageSize= 5;
+  // let page= parseInt(req.query.page || 0);
+  // let totalData= await Student.countDocuments();
+  // let pageFind= await Student.find()
+  // .limit(pageSize * 1 ).skip((page - 1) * pageSize);
+  // try {
+  //   return res.status(201).send({
+  //     success: true, totalData: Math.ceil( totalData / pageSize),
+  //     pageFind: pageFind
+  //   })
+  // } catch (error) {
+  //   return res.status(401).send({ message: "Data not found" })
+  // }
+
   let pageSize= 5;
   let page= parseInt(req.query.page || 0);
   let totalData= await Student.countDocuments();
