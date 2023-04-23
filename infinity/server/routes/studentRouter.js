@@ -126,15 +126,34 @@ studentRouter.put("/:id/active", async(req, res)=>{
   //   return res.status(401).send({ message: "Data not found" })
   // }
 
-  let pageSize= 5;
-  let page= parseInt(req.query.page || 0);
-  let totalData= await Student.countDocuments();
-  let pageFind= await Student.find()
-  .limit(pageSize).skip(pageSize * page);
-  try {
+  // let pageSize= 5;
+  // let page= parseInt(req.query.page || 0);
+  // let totalData= await Student.countDocuments();
+  // let pageFind= await Student.find()
+  // .limit(pageSize).skip(pageSize * page);
+  // try {
+    const { page, limit } = req.query;
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+  
+    try {
+      const users = await Student.find()
+        .skip(startIndex)
+        .limit(limit);
+  
+      const totalCount = await Student.countDocuments();
+      const totalPages = Math.ceil(totalCount / limit);
+  
+      const response = {
+        data: users,
+        totalPages,
+        currentPage: page,
+        totalCount,
+      };
     return res.status(201).send({
-      success: true, totalData: Math.ceil( totalData / pageSize),
-      pageFind: pageFind
+      response
+      // success: true, totalData: Math.ceil( totalData / pageSize),
+      // pageFind: pageFind
     })
   } catch (error) {
     return res.status(401).send({ message: "Data not found" })

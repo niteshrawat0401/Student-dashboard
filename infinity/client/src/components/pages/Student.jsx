@@ -19,7 +19,7 @@ export const Student = () => {
   const [student, setStudent] = useState(init);
   const [studentData, setStudentData] = useState([]);
   const [loader, setLoader] = useState(false);
-  const [pageCount, setPageCount] = useState(0);
+  const [pageCount, setPageCount] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
 
   const handleChange = (e) => {
@@ -30,13 +30,15 @@ export const Student = () => {
   const { name, email, mobile } = student;
 // Submit
   const handleSubmit = (e) => {
+    setLoader(true)
     e.preventDefault();
     axios
       .post("http://localhost:8080/createstudent/student", student)
       .then((res) => {
-        getStudents();
+        getUsers();
         // console.log(res.data.createStudent);
-        setStudent({ ...init });
+      setStudent({ ...init });
+      setLoader(false)
       })
       .catch((err) => {
         console.log(err);
@@ -48,9 +50,9 @@ export const Student = () => {
     axios
       .get("http://localhost:8080/getallstudent/getStudent")
       .then((res) => {
-        // setStudentData(res.data.getStudents);
+        setStudentData(res.data.getStudents);
         setLoader(false);
-        // console.log(res.data.getStudents);
+        console.log(res.data.getStudents);
       })
       .catch((err) => {
         console.log(err);
@@ -58,14 +60,16 @@ export const Student = () => {
   };
 
   useEffect(() => {
-    // getStudents();
+    getStudents();
   }, []);
 // Delete
   const handleDelete = (id) =>{
+    setLoader(true)
     axios.delete(`http://localhost:8080/deletestudent/${id}/student`)
     .then((res)=>{
       console.log(res.data);
-      getStudents()
+      getUsers()
+    setLoader(false)
     })
     .catch((err)=>{
       console.log(err);
@@ -74,40 +78,55 @@ export const Student = () => {
 
 // CheckActive
   const handleActive = (id) =>{
+    setLoader(true)
     axios.put(`http://localhost:8080/checkactive/${id}/active`)
     .then((res)=>{
-      // console.log(res.data);
+      console.log(res.data);
       // getStudents()
-      fetchPosts()
+      getUsers()
+      setLoader(false)
     })
     .catch((err)=>{
       console.log(err);
     })
   }
 
-  const fetchPosts = async (page) => {
-    setLoader(true);
-    await axios.get(`http://localhost:8080/student/pagination?page=${currentPage}`)
-    .then((res)=>{
-      console.log(res.data.pageFind);
-      setStudentData(res.data.pageFind);
-      setPageCount(res.data.totalData);
-      setCurrentPage(res.data.totalData - 1);
-      setLoader(false);
-    })
-    .catch((err)=>{
-      console.log(err);
-    })
-   
-  };
+  // const fetchPosts = async () => {
+  //   setLoader(true);
+  //   const response = await axios.get(`http://localhost:8080/student/pagination?page=${currentPage}&limit=5`)
 
+  //   const data = await response.json();
+  //   console.log(data);
+  //   // setUsers(data.users);
+  //   // .then((res)=>{
+  //   //   console.log(res.data.response.data);
+  //   //   setStudentData(res.data.response.data);
+  //   //   setPageCount(res.data.response.totalPages);
+  //   //   let a = +res.data.response.currentPage
+  //   //   console.log(a);
+  //   //   setCurrentPage(a);
+  //   //   setLoader(false);
+  //   // })
+  //   // .catch((err)=>{
+  //   //   console.log(err);
+  //   // })
+   
+  // };
+  // fetchPosts()
+
+  const getUsers = async () => {
+    const response = await fetch(`http://localhost:8080/student/pagination?page=${currentPage}&limit=5`);
+    const data = await response.json();
+    console.log(data.response.data);
+    setStudentData(data.response.data);
+    setPageCount(data.response.totalPages);
+  };
   useEffect(() => {
-    fetchPosts(1);
+    getUsers();
   }, [currentPage]);
 
   const handlePageClick = (data) => {
-    // console.log("handl", data);
-    fetchPosts(data.selected + 1);
+    setCurrentPage(data.selected + 1 )
   };
 
   return (
@@ -217,11 +236,10 @@ export const Student = () => {
               </table>
                
               <ReactPaginate
-              pageCount={pageCount}
-              marginPagesDisplayed={2}
-              pageRangeDisplayed={1}
-              onPageChange={handlePageClick}
-              forcePage={currentPage}
+               pageCount={pageCount}
+               onPageChange={handlePageClick}
+               containerClassName={'pagination'}
+               activeClassName={'active'}
               /></>
                
                      
