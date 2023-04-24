@@ -8,6 +8,8 @@ import trash from "../../assets/trash.png";
 import { MdDelete } from 'react-icons/md';
 import { Link } from "react-router-dom";
 import ReactPaginate from 'react-paginate';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 
 let init = {
@@ -52,7 +54,7 @@ export const Student = () => {
       .then((res) => {
         setStudentData(res.data.getStudents);
         setLoader(false);
-        console.log(res.data.getStudents);
+        // console.log(res.data.getStudents);
       })
       .catch((err) => {
         console.log(err);
@@ -117,7 +119,6 @@ export const Student = () => {
   const getUsers = async () => {
     const response = await fetch(`http://localhost:8080/student/pagination?page=${currentPage}&limit=5`);
     const data = await response.json();
-    console.log(data.response.data);
     setStudentData(data.response.data);
     setPageCount(data.response.totalPages);
   };
@@ -125,8 +126,8 @@ export const Student = () => {
     getUsers();
   }, [currentPage]);
 
-  const handlePageClick = (data) => {
-    setCurrentPage(data.selected + 1 )
+  const handlePageClick = (event,value) => {
+    setCurrentPage(value)
   };
 
   return (
@@ -234,14 +235,17 @@ export const Student = () => {
                     
                 ))}
               </table>
-               
-              <ReactPaginate
-               pageCount={pageCount}
-               onPageChange={handlePageClick}
-               containerClassName={'pagination'}
-               activeClassName={'active'}
-              /></>
-               
+               <div className="paginationDiv">
+              <Stack spacing={2} style={{alignItems:"center"}}>
+            <Pagination
+             count={pageCount} 
+             color="primary"
+             currentPage={currentPage}
+              onChange={handlePageClick}
+            />
+            </Stack>
+            </div>
+              </> 
                      
             ) : (
               <div style={{ textAlign: "center" }}>
