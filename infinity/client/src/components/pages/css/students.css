@@ -1,3 +1,7 @@
+/* *{
+    background-color: #e7daee;
+} */
+
 .studentFormdiv{
     /* border: 1px solid red; */
     width: 50rem;
@@ -22,13 +26,14 @@
     cursor: pointer;
 }
 .appendtable{
-    border: 1px solid black;
-    width: 45rem;
+    /* border: 1px solid black; */
+    width: 55rem;
+    height: 25rem;
     margin: auto;
-    margin-top: 4rem;
+    margin-top: 2rem;
 }
 .appendtable table{
-    width: 45rem;
+    width: 55rem;
     /* margin: auto; */
 }
 .appendtable tr th{

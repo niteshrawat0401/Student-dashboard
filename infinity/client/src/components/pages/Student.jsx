@@ -69,7 +69,7 @@ export const Student = () => {
     setLoader(true)
     axios.delete(`http://localhost:8080/deletestudent/${id}/student`)
     .then((res)=>{
-      console.log(res.data);
+      // console.log(res.data);
       getUsers()
     setLoader(false)
     })
@@ -83,7 +83,7 @@ export const Student = () => {
     setLoader(true)
     axios.put(`http://localhost:8080/checkactive/${id}/active`)
     .then((res)=>{
-      console.log(res.data);
+      // console.log(res.data);
       // getStudents()
       getUsers()
       setLoader(false)
@@ -179,6 +179,7 @@ export const Student = () => {
       </div>
 
       <div className="appendtable">
+        <input type="text"  placeholder="Search"/>
         {loader ? (
           <div style={{ textAlign: "center" }}>
             <img style={{ textAlign: "center", width: "30%" }} src={spinner} />
@@ -235,7 +236,7 @@ export const Student = () => {
                     
                 ))}
               </table>
-               <div className="paginationDiv">
+               <div className=" ">
               <Stack spacing={2} style={{alignItems:"center"}}>
             <Pagination
              count={pageCount} 

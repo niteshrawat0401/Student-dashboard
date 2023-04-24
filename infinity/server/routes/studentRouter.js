@@ -160,39 +160,21 @@ studentRouter.put("/:id/active", async(req, res)=>{
   }
 })
 
-// studentRouter.get('/pagination', async (req, res) => {
-//   try {
-//     const page = parseInt(req.query.page) || 1;
-//     const limit = parseInt(req.query.limit) || 5;
+// Serach input
+studentRouter.get("/getSearch/:key", async(req, res)=>{
+  let search = await Student.find({
+    $or:[
+      {name: {$regex: req.params.key, $options: "i"}},
+      {email: {$regex: req.params.key, $options: "i"}},
+    ]
+  })
+  try {
+    if(search){
+      return res.status(200).json({ msg: "Data get successfully", search})
+    }
+  } catch (error) {
+    return res.status(500).json({ msg: "error while searching", error})
+  }
+})
 
-//     const startIndex = (page - 1) * limit;
-//     const endIndex = page * limit;
-
-//     const results = {};
-
-//     results.results = await Student.find({})
-//       .sort({ createdAt: -1 })
-//       .skip(startIndex)
-//       .limit(limit)
-//       .exec();
-
-//     if (endIndex < (await Student.countDocuments().exec())) {
-//       results.next = {
-//         page: page + 1,
-//         limit: limit,
-//       };
-//     }
-
-//     if (startIndex > 0) {
-//       results.previous = {
-//         page: page - 1,
-//         limit: limit,
-//       };
-//     }
-
-//     res.json(results);
-//   } catch (err) {
-//     res.status(500).json({ message: err.message });
-//   }
-// });
 module.exports = studentRouter
