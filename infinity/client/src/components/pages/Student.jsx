@@ -131,7 +131,16 @@ export const Student = () => {
   };
 
   const handleSearchfilter = (e)=>{
-  
+    let value = e.target.value;
+    if(value.length != 0){
+    axios.get(`http://localhost:8080/search/getSearch/${value}`)
+      .then((res)=>{
+        setStudentData(res.data.search)
+    })
+    }
+    else{
+      getUsers()
+    }
   }
 
   return (
