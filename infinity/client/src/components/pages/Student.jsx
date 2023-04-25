@@ -67,15 +67,23 @@ export const Student = () => {
 // Delete
   const handleDelete = (id) =>{
     setLoader(true)
-    axios.delete(`http://localhost:8080/deletestudent/${id}/student`)
-    .then((res)=>{
-      // console.log(res.data);
+    if(window.confirm("Are you sure want to delete?") === true){
+      axios.delete(`http://localhost:8080/deletestudent/${id}/student`)
+      .then((res)=>{
+        // console.log(res.data);
+          getUsers()
+          setLoader(false)
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+    }
+    else{
+      setLoader(false)
       getUsers()
-    setLoader(false)
-    })
-    .catch((err)=>{
-      console.log(err);
-    })
+    }
+
+   
   }
 
 // CheckActive
@@ -139,7 +147,7 @@ export const Student = () => {
     })
     }
     else{
-      getUsers()
+      getUsers();
     }
   }
 
@@ -222,7 +230,7 @@ export const Student = () => {
                       <td>{ele.email}</td>
                       <td>{ele.mobile}</td>
                       <td ><Link to={`/edit/${ele._id}`}>Edit</Link></td>
-                      <td><img style={{ height: "1.5rem",width: "1.5rem"}} src={trash} onClick={()=>handleDelete(ele._id)}/></td>
+                      <td><img style={{ height: "1.5rem",width: "1.5rem"}} src={trash} alt="trace" onClick={()=>handleDelete(ele._id)}/></td>
                       {/* <td><MdDelete/></td> */}
                       <td  style={{
                         padding: "10px 10px 10px 10px",
