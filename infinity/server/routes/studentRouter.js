@@ -164,8 +164,10 @@ studentRouter.put("/:id/active", async(req, res)=>{
 studentRouter.get("/getSearch/:key", async(req, res)=>{
   let search = await Student.find({
     $or:[
-      {name: {$regex: req.params.key, $options: "i"}},
-      {email: {$regex: req.params.key, $options: "i"}},
+      {
+        name: { $regex: new RegExp("^"+req.params.key+".*"), $options: 'i' }
+        // name: {$regex: req.params.key, $options: "i"}
+      },
     ]
   })
   try {

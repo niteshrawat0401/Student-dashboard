@@ -130,6 +130,10 @@ export const Student = () => {
     setCurrentPage(value)
   };
 
+  const handleSearchfilter = (e)=>{
+  
+  }
+
   return (
     <>
       <div className="studentFormdiv">
@@ -179,7 +183,7 @@ export const Student = () => {
       </div>
 
       <div className="appendtable">
-        <input type="text"  placeholder="Search"/>
+        <input type="text"  placeholder="Search" onChange={handleSearchfilter}/>
         {loader ? (
           <div style={{ textAlign: "center" }}>
             <img style={{ textAlign: "center", width: "30%" }} src={spinner} />
@@ -236,7 +240,7 @@ export const Student = () => {
                     
                 ))}
               </table>
-               <div className=" ">
+               <div className="paginationDiv">
               <Stack spacing={2} style={{alignItems:"center"}}>
             <Pagination
              count={pageCount} 
