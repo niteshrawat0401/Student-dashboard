@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import "./css/login.css"
 
 let init = {
   userName: "",
@@ -36,12 +37,14 @@ export const Login = () => {
       });
   };
   return (
-    <div>
-      <h2>Login User</h2>
+  <>
+  <div className="login_main_container">
+      <h1  style={{ fontWeight: "bold", paddingTop: "2rem", fontSize: "21px" }}>Login User</h1>
       <form onSubmit={handleLogin}>
         <input
           type="text"
           name="userName"
+          className="inpu1"
           placeholder="UserName"
           onChange={handleChanged}
           value={login.userName}
@@ -51,23 +54,25 @@ export const Login = () => {
         <input
           type="password"
           name="passWord"
+          className="inpu2"
           placeholder="PassWord"
           onChange={handleChanged}
           value={login.passWord}
           required
         />
         <br />
-        <select name="userType" onChange={handleChanged} required style={{width:"16.5%"}}>
+        <select className="inpu3" name="userType" onChange={handleChanged} required >
           <option>Type</option>
           <option value="Teacher">Teacher</option>
           <option value="Student">Student</option>
         </select>
         <br/>
-        <input type="submit" value="Log In" />
+        <input className="inpu4" type="submit" value="Log In" />
       </form>
       <p>
         Create an account <Link to={"/"}>Signup</Link>
       </p>
     </div>
+    </>
   );
 };
