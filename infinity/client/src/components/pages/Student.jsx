@@ -76,14 +76,8 @@ export const Student = () => {
       })
       .catch((err)=>{
         console.log(err);
-      })
-    }
-    else{
-      setLoader(false)
-    //   getUsers()
-    }
-
-   
+      })}
+    else{setLoader(false)}
   }
 
 // CheckActive

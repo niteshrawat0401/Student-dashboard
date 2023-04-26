@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./css/signup.css";
 
 let init = {
   userName: "",
@@ -33,13 +34,15 @@ export const Signup = () => {
   };
 
   return (
-    <div>
-      <h2>Register User</h2>
+    <>
+    <div className="signup_main_cont">
+      <h1 style={{ fontWeight: "bold",fontSize:"21px",paddingTop:"2rem" }}>Register User</h1>
       <form onSubmit={handleSubmit}>
         <br />
         <input
           type="text"
           name="userName"
+          className="inp1"
           placeholder="UserName"
           onChange={handleChange}
           value={signup.userName}
@@ -49,23 +52,26 @@ export const Signup = () => {
         <input
           type="password"
           name="passWord"
+          className="inp2"
           placeholder="PassWord"
           onChange={handleChange}
           value={signup.passWord}
           required
         />
         <br />
-        <select name="userType" onChange={handleChange} required style={{width:"16.5%"}}>
+        <select 
+        className="inp3" name="userType" onChange={handleChange} required >
           <option>Type</option>
           <option value="Teacher">Teacher</option>
           <option value="Student">Student</option>
         </select>
         <br/>
-        <input type="submit" value="Sign Up" />
+        <input className="inp5" type="submit" value="Sign Up" />
       </form>
       <p>
         Already have an account <Link to={"/login"}>Login</Link>
       </p>
     </div>
+    </>
   );
 };
