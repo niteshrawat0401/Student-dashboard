@@ -7,6 +7,7 @@ import { Home } from './components/Home/Home';
 import { Navbar } from './components/pages/Navbar';
 import { Student } from './components/pages/student/Student';
 import { Editstudent } from './components/pages/student/Editstudent';
+import { StudentDetail } from './components/pages/student/StudentDetail';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path='/student' element={<Student/>}/>
         <Route path='/home' element={<Home/>}/>
         <Route path='/edit/:id' element={<Editstudent/>}/>
+        <Route path='/detail/:id' element={<StudentDetail/>}/>
       </Routes>
     </div>
   );
