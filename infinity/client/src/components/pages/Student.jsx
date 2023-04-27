@@ -194,7 +194,7 @@ export const Student = () => {
       </div>
 
       <div className="appendtable">
-        <input type="text"  placeholder="Search" onChange={handleSearchfilter}/>
+        <input type="text" style={{padding: "3px 20px"}}  placeholder="Search" onChange={handleSearchfilter}/>
         {loader ? (
           <div style={{ textAlign: "center" }}>
             <img style={{ textAlign: "center", width: "30%" }} src={spinner} />
