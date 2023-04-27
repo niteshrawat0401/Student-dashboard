@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 // import { createStudents } from "../../action/student";
 import axios from "axios";
-import "./css/students.css";
-import empty from "../../assets/empty.jpg";
-import spinner from "../../assets/spinner.gif";
-import trash from "../../assets/trash.png";
+import "../css/students.css";
+import empty from "../../../assets/empty.jpg";
+import spinner from "../../../assets/spinner.gif";
+import trash from "../../../assets/trash.png";
 import { MdDelete } from 'react-icons/md';
 import { Link } from "react-router-dom";
 import ReactPaginate from 'react-paginate';
@@ -220,7 +220,8 @@ export const Student = () => {
                 {studentData.map((ele) => (
                   <tbody key={ele._id}>
                     <tr>
-                      <td>{ele.name}</td>
+                      
+                    <td><Link to={`detail/${ele.id}`}>{ele.name}</Link></td>
                       <td>{ele.email}</td>
                       <td>{ele.mobile}</td>
                       <td ><Link to={`/edit/${ele._id}`}>Edit</Link></td>

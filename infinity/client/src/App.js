@@ -5,7 +5,7 @@ import {Signup} from "./components/pages/Signup"
 import {Login} from "./components/pages/Login"
 import { Home } from './components/Home/Home';
 import { Navbar } from './components/pages/Navbar';
-import { Student } from './components/pages/Student';
+import { Student } from './components/pages/student/Student';
 import { Editstudent } from './components/pages/student/Editstudent';
 
 
