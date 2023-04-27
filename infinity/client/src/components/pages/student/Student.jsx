@@ -221,7 +221,7 @@ export const Student = () => {
                   <tbody key={ele._id}>
                     <tr>
                       
-                    <td><Link to={`/detail/${ele.id}`}>{ele.name}</Link></td>
+                    <td><Link to={`/detail/${ele._id}`}>{ele.name}</Link></td>
                       <td>{ele.email}</td>
                       <td>{ele.mobile}</td>
                       <td ><Link to={`/edit/${ele._id}`}>Edit</Link></td>

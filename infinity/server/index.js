@@ -26,6 +26,7 @@ app.use("/editstudent", studentRouter);
 app.use("/deletestudent", studentRouter);
 app.use("/checkactive", studentRouter);
 app.use("/search", studentRouter);
+app.use("/getSingledata", studentRouter);
 
 app.get("/", (req, res) => res.send("hello"));
 

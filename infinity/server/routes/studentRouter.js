@@ -41,7 +41,7 @@ studentRouter.get("/getStudent", async(req, res)=>{
   }
 })
 
-// Get single data
+// Get single data to update
 studentRouter.get("/:id/student", async(req, res)=>{
   let {id} = req.params;
   let payload = req.body;
@@ -52,6 +52,19 @@ studentRouter.get("/:id/student", async(req, res)=>{
     }
   } catch (error) {
     return res.status(500).json({ msg: "Try again later", error})
+  }
+})
+
+// get single data
+studentRouter.get("/:id/singlestudent", async(req, res)=>{
+  const {id} = req.params;
+  let getsingle = await Student.findById({_id:id});
+  try {
+    if(getsingle){
+      return res.status(200).json({msg: "get single data", getsingle});
+    }
+  } catch (error) {
+    return res.status(500).json({msg: "Error occured", error});
   }
 })
 
