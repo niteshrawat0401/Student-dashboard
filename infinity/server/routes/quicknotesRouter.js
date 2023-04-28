@@ -27,7 +27,10 @@ quicknotesRouter.post("/quicknotes", async(req, res)=>{
                 pdf : pdf, 
                 qna : qna,
             }
-           
+            const updateNotes = await Quicknotes.findOneAndUpdate({date: date}, {$push: {notes: note}});
+            console.log("update");
+            console.log(updateNotes);
+            return res.status(201).json({msg: "Note updated successfully", updateNotes});
         }
       } catch (error) {
         return res.status(500).json({msg: "Error occured while creating a notes", error});
