@@ -46,7 +46,7 @@ export const StudentDetail = () => {
                     <th>Mobile</th>
                     {/* <th>Edit</th> */}
                     {/* <th>Delete</th> */}
-                    <th>Active</th>
+                    {/* <th>Active</th> */}
                     <th>Status</th>
                   </tr>
                 </thead>
@@ -60,7 +60,7 @@ export const StudentDetail = () => {
                       <td>{detail.mobile}</td>
                       {/* <td><img style={{ height: "1.5rem",width: "1.5rem"}} src={trash} alt="trace" /></td> */}
                       {/* <td><MdDelete/></td> */}
-                      <td  style={{
+                      {/* <td  style={{
                         padding: "10px 10px 10px 10px",
                         fontSize: "15px",
                         cursor:"pointer"}}>
@@ -71,7 +71,7 @@ export const StudentDetail = () => {
                         }
                         <span className="slider round"></span>
                       </label>
-                           </td>
+                           </td> */}
                            <td>
                               {
                                 detail.active == true ? (
