@@ -29,7 +29,7 @@ app.use("/checkactive", studentRouter);
 app.use("/search", studentRouter);
 app.use("/getSingledata", studentRouter);
 app.use("/createNotes", quicknotesRouter);
-
+app.use("/getquickNotes", quicknotesRouter);
 
 app.get("/", (req, res) => res.send("hello"));
 
