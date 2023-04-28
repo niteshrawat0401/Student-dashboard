@@ -5,6 +5,7 @@ const studentRouter = require("./routes/studentRouter.js")
 const authentication = require("./routes/jwt.js");
 
 const cors = require("cors");
+const quicknotesRouter = require("./routes/quicknotesRouter.js");
 
 const app = express();
 
@@ -27,6 +28,8 @@ app.use("/deletestudent", studentRouter);
 app.use("/checkactive", studentRouter);
 app.use("/search", studentRouter);
 app.use("/getSingledata", studentRouter);
+app.use("/createNotes", quicknotesRouter);
+
 
 app.get("/", (req, res) => res.send("hello"));
 

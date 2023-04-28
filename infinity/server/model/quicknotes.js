@@ -4,17 +4,17 @@ const quicknoteSchema = new Schema(
   {
     date: {
       type: String,
-      required: true,
+    //   required: true,
     },
     notes: [
       {
         subject: {
           type: String,
-          required: true,
+        //   required: true,
         },
         pdf: {
           type: String,
-          required: true,
+        //   required: true,
         },
         qna: {
           type: String,
