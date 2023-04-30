@@ -8,6 +8,8 @@ import { Navbar } from './components/pages/Navbar';
 import { Student } from './components/pages/student/Student';
 import { Editstudent } from './components/pages/student/Editstudent';
 import { StudentDetail } from './components/pages/student/StudentDetail';
+import {Quicknotes} from './components/pages/Quicknotes/Quicknotes';
+import { Addquicknotes } from './components/pages/Quicknotes/Addquicknotes';
 
 
 function App() {
@@ -21,6 +23,10 @@ function App() {
         <Route path='/home' element={<Home/>}/>
         <Route path='/edit/:id' element={<Editstudent/>}/>
         <Route path='/detail/:id' element={<StudentDetail/>}/>
+        <Route path='/detail/:id' element={<StudentDetail/>}/>
+        <Route path='/quicknotes' element={<Quicknotes/>}/>
+        <Route path='/addquicknotes' element={<Addquicknotes/>}/>
+
       </Routes>
     </div>
   );
