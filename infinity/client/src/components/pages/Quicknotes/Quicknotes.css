@@ -1,42 +1,42 @@
-.quicknotesdiv{
-    width: 40%;
-    margin: auto;
-    margin-top: 5rem;
+.quicknotesdiv {
+  width: 40%;
+  margin: auto;
+  margin-top: 5rem;
 }
 
-.notesform{
-    border: 1px solid black;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 50px;
-    justify-content: center;
+.notesform {
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  justify-content: center;
 }
-.inpdate{
-    width: 10rem;
-    height: 3.5rem;
-    border-radius: 5px;
-    font-size: 17px;
+.inpdate {
+  width: 10rem;
+  height: 3.5rem;
+  border-radius: 5px;
+  font-size: 17px;
 }
-.inpsub{
-    width: 10rem;
-    height: 3.5rem;
-    border-radius: 5px;
-    font-size: 17px;
+.inpsub {
+  width: 10rem;
+  height: 3.5rem;
+  border-radius: 5px;
+  font-size: 17px;
 }
-.filechoose{
-    margin-left: 6.5rem;
+.filechoose {
+  margin-left: 6.5rem;
 }
-.inpsubpdf{
-    margin-top: 3rem;
-    justify-content: center;
+.inpsubpdf {
+  margin-top: 3rem;
+  justify-content: center;
 }
-.inpsubqna{
-    margin-top: 2.5rem;
-    justify-content: center;
+.inpsubqna {
+  margin-top: 2.5rem;
+  justify-content: center;
 }
-.inpsubform{
-    width: 8rem;
-    height: 3rem;
-    font-size: 17px;
-    margin-right: 2.5rem;
+.inpsubform {
+  width: 8rem;
+  height: 3rem;
+  font-size: 17px;
+  margin-right: 2.5rem;
 }

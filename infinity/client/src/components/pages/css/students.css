@@ -33,6 +33,7 @@
 }
 .appendtable table{
     width: 55rem;
+    border-collapse: collapse;
     /* margin: auto; */
 }
 .appendtable tr th{
