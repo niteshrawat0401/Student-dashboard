@@ -1,11 +1,26 @@
 const Quicknotes = require("../model/quicknotes");
 const {Router} = require("express");
+const multer = require("multer")
 
 const quicknotesRouter = Router();
+// const upload = multer();
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, './uploads') // specify your destination directory here
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname)
+    }
+  })
+  
+  const upload = multer({ storage: storage })
+  
 
 // Post notes
-quicknotesRouter.post("/quicknotes", async(req, res)=>{
-      const {date, subject, pdf, qna} = req.body;
+quicknotesRouter.post("/quicknotes",  upload.single('pdfFile'), async(req, res)=>{
+      const {date, subject,  qna} = req.body;
+      const pdf = req.file.path; // get the path of uploaded file
       let notes = await Quicknotes.find({date: date});
       try {
         if(notes.length == 0){
@@ -14,12 +29,10 @@ quicknotesRouter.post("/quicknotes", async(req, res)=>{
                 pdf : pdf, 
                 qna : qna,
             }
-            console.log("notes", notes);
             const createNotes = await Quicknotes.create({
               date : date,
               notes : notes
-            });
-            console.log("add");
+            })
             return res.status(201).json({msg: "Note created successfully", createNotes});
         }
         else{
@@ -29,7 +42,6 @@ quicknotesRouter.post("/quicknotes", async(req, res)=>{
                 qna : qna,
             }
             const updateNotes = await Quicknotes.findOneAndUpdate({date: date}, {$push: {notes: note}});
-            console.log("update");
             console.log(updateNotes);
             return res.status(201).json({msg: "Note updated successfully", updateNotes});
         }
