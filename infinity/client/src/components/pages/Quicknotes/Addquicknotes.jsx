@@ -14,9 +14,10 @@ export const Addquicknotes = () => {
         // {pdf: ""}
         null
         );
-      const [qna, setQna] = useState({
-        qna: ""
-      })
+      const [qna, setQna] = useState(
+        // {qna: ""}
+            null
+        )
 
     const {date, subject} = data;
     // const {pdf} = mediaLink 
@@ -26,15 +27,23 @@ export const Addquicknotes = () => {
       };
     
     const handleFile = (e) =>{
+        console.log(e);
         const selectedFile = e.target.files[0];
         setPdf(selectedFile);
     }  
+
+    const handleQnafile = (e) =>{
+        const selectedQnaFile = e.target.files[0];
+        setQna(selectedQnaFile);
+    } 
+     console.log(qna);
 
     const handleSubmit = async(e) =>{
         e.preventDefault();
 
         const formData = new FormData();
         formData.append('pdfFile', mediaLink,mediaLink.name);
+        formData.append('qnaFile', qna,qna.name);
         formData.append('date', date);
         formData.append('subject', subject);
     
@@ -86,7 +95,7 @@ export const Addquicknotes = () => {
         <input className='inpsub' type='text' name='subject' value={subject} placeholder='Subject' onChange={handleChange("subject")}/>
         <div className='filechoose'>
         <input className='inpsubpdf' type='file' name='mediaLink' accept='application/pdf,application' onChange={handleFile}/>
-        <input className='inpsubqna' type='file'/>
+        <input className='inpsubqna' type='file' name='mediaLink' accept='application/pdf,application' onChange={handleQnafile}/>
         </div>
         <br/>
         <input className='inpsubform' type='submit' value="Submit"/>
