@@ -10,8 +10,17 @@ import { Link } from "react-router-dom";
 import ReactPaginate from 'react-paginate';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-
-
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper'
+import Checkbox from '@mui/material/Checkbox';
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 let init = {
   name: "",
   email: "",
@@ -23,6 +32,7 @@ export const Student = () => {
   const [loader, setLoader] = useState(false);
   const [pageCount, setPageCount] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -85,10 +95,9 @@ export const Student = () => {
     setLoader(true)
     axios.put(`http://localhost:8080/checkactive/${id}/active`)
     .then((res)=>{
-      // console.log(res.data);
-      // getStudents()
-      getUsers()
+      window.location.reload()
       setLoader(false)
+      getUsers()
     })
     .catch((err)=>{
       console.log(err);
@@ -194,7 +203,16 @@ export const Student = () => {
       </div>
 
       <div className="appendtable">
-        <input type="text" style={{padding: "3px 20px"}}  placeholder="Search" onChange={handleSearchfilter}/>
+        <Box
+      component="form"
+      sx={{
+        '& > :not(style)': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <TextField id="outlined-basic" size="small" label="Search" variant="outlined" onChange={handleSearchfilter}/>
+    </Box>
         {loader ? (
           <div style={{ textAlign: "center" }}>
             <img style={{ textAlign: "center", width: "30%" }} src={spinner} />
@@ -204,7 +222,53 @@ export const Student = () => {
             <>
             {studentData.length != 0 ? (
               <>
-              <table>
+               <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 800 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell align="center">Name</TableCell>
+            <TableCell align="center">Email</TableCell>
+            <TableCell align="center">Mobile</TableCell>
+            <TableCell align="center">Edit</TableCell>
+            <TableCell align="center">Delete</TableCell>
+            <TableCell align="center">Active</TableCell>
+            <TableCell align="center">Status</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {studentData.map((row) => (
+            <TableRow
+              key={row.name}
+              sx={{ '&:last-child td, &:last-child th': { border: 1 } }}
+            >
+              <TableCell align="center" component="th" scope="row">
+                <Link style={{cursor:"pointer", textDecoration: "none", color: "black"}} to={`/detail/${row._id}`}>{row.name}</Link>
+              </TableCell>
+              <TableCell align="center">{row.email}</TableCell>
+              <TableCell align="center">{row.mobile}</TableCell>
+              <TableCell align="center"><Link to={`/edit/${row._id}`}>Edit</Link></TableCell>
+              <TableCell align="center"><img style={{ height: "1.5rem",width: "1.5rem"}} src={trash} alt="trace" onClick={()=>handleDelete(row._id)}/></TableCell>
+              <TableCell align="center"> <label onClick={()=>handleActive(row._id)} className="switch">
+                        {row.active == true ?
+                          <Checkbox {...label} defaultChecked
+                          inputProps={{ 'aria-label': 'controlled' }}
+                          /> :
+                          <Checkbox {...label} disabled/>
+                        }
+                        <span className="slider round"></span>
+                      </label></TableCell>
+              <TableCell align="center"> {
+                                row.active == true ? (
+                                  <p style={{color: "green"}}>Active</p>
+                                  ) :
+                                  <p style={{color: "red"}}>Inactive</p>
+                              }</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+              {/* <table>
                 <thead>
                   <tr>
                     <th>Name</th>
@@ -225,9 +289,9 @@ export const Student = () => {
                       <td>{ele.email}</td>
                       <td>{ele.mobile}</td>
                       <td ><Link to={`/edit/${ele._id}`}>Edit</Link></td>
-                      <td><img style={{ height: "1.5rem",width: "1.5rem"}} src={trash} alt="trace" onClick={()=>handleDelete(ele._id)}/></td>
+                      <td><img style={{ height: "1.5rem",width: "1.5rem"}} src={trash} alt="trace" onClick={()=>handleDelete(ele._id)}/></td> */}
                       {/* <td><MdDelete/></td> */}
-                      <td  style={{
+                      {/* <td  style={{
                         padding: "10px 10px 10px 10px",
                         fontSize: "15px",
                         cursor:"pointer"}}>
@@ -251,7 +315,7 @@ export const Student = () => {
                   </tbody>
                     
                 ))}
-              </table>
+              </table> */}
                <div className="paginationDiv">
               <Stack spacing={2} style={{alignItems:"center"}}>
             <Pagination

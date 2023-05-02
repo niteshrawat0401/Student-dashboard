@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import "./Quicknotes.css"
 import axios from 'axios';
 
+
 let init = {
     date: "",
     subject: "",
@@ -27,7 +28,6 @@ export const Addquicknotes = () => {
       };
     
     const handleFile = (e) =>{
-        console.log(e);
         const selectedFile = e.target.files[0];
         setPdf(selectedFile);
     }  
