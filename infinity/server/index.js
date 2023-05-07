@@ -1,7 +1,7 @@
 const express = require("express");
 const connection = require("./db/db.js");
 const authRouter = require("./routes/authRouter.js");
-const studentRouter = require("./routes/studentRouter.js")
+const studentRouter = require("./routes/studentRouter.js");
 const authentication = require("./routes/jwt.js");
 
 const cors = require("cors");
