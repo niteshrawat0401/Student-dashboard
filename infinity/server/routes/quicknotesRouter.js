@@ -75,8 +75,8 @@ quicknotesRouter.post("/quicknotes",  upload.fields([
     //   }
 })
 
-quicknotesRouter.get("/quicknotes", async(req, res)=>{
-    const {date} = req.body;
+quicknotesRouter.get("/quicknotes/:date", async(req, res)=>{
+    const {date} = req.params;
     let getQuicknotes = await Quicknotes.find({date: date});
     try {
         if(getQuicknotes){
