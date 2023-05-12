@@ -10,7 +10,7 @@ import { Editstudent } from './components/pages/student/Editstudent';
 import { StudentDetail } from './components/pages/student/StudentDetail';
 import {Quicknotes} from './components/pages/Quicknotes/Quicknotes';
 import { Addquicknotes } from './components/pages/Quicknotes/Addquicknotes';
-
+import  ScssFile  from './components/pages/ScssFile';
 
 function App() {
   return (
@@ -28,6 +28,7 @@ function App() {
         <Route path='/addquicknotes' element={<Addquicknotes/>}/>
 
       </Routes>
+      {/* <ScssFile/> */}
     </div>
   );
 }

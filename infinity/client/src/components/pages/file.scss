@@ -1,0 +1,42 @@
+// *{ margin: 0; padding: 0; font-family: 'Josefin Sans', sans-serif; }
+
+// // @import 'mixins';
+// // @import 'variables';
+
+// // _variables.scss
+// $hovercolor : #48dbfb;
+
+
+// // _mixins.scss
+
+// @mixin commoncode {
+//   text-transform: capitalize; 
+// }
+
+// @mixin headercode($bgcolor, $colorchng){
+//  width: 100% - 20%;
+//  height: 50vh + 70vh - 20vh;
+//  margin: 0 auto;
+//  background-color: $bgcolor;
+//  color:  $colorchng; 
+//  display: flex;
+//  flex-direction: column;
+//  justify-content: center;
+//  align-items: center;
+// }
+
+// header{ @include headercode(#222f3e, #feca57);
+
+//   h1{ @include commoncode;
+//    &:hover{ color: $hovercolor; }
+ 
+//    &::after{ content: " Family " }
+//   } 
+ 
+//   p{ @include commoncode; }
+//  }
+ 
+//  .secheader{ @include headercode(#10ac84, #fff);  }
+
+
+
