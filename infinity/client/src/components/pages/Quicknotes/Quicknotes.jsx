@@ -66,7 +66,19 @@ export const Quicknotes = () => {
         setYYYY(e.target.value)
       }
 
-     
+      const getNotes = async () =>{
+
+        let day = yyyy+ "-" + month + "-" + date
+        let data = await axios.get(`http://localhost:8080/getquickNotes/quicknotes/${day}`)
+        console.log(data.data.getQuicknotes);
+        if(data.data.length !== 0){
+            setData(data.data[0].getQuicknotes)
+        }
+      }
+
+      useEffect(()=>{
+        getNotes()
+      },[yyyy, month, date])
 
   return (
     <>
