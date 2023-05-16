@@ -227,9 +227,9 @@ export const Student = () => {
             <>
             {studentData.length != 0 ? (
               <>
-               <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 800 }} aria-label="simple table" class="h-12">
-        <TableHead class="bg-purple-700 h-12">
+               <TableContainer class="border-purple-700	" component={Paper}>
+      <Table sx={{ minWidth: 800 }} aria-label="simple table">
+        <TableHead class="bg-purple-700 h-12 ">
           <TableRow>
             <TableCell class="text-white"  align="center">Name</TableCell>
             <TableCell class="text-white" align="center">Email</TableCell>
@@ -247,7 +247,7 @@ export const Student = () => {
               sx={{ '&:last-child td, &:last-child th': { border: 1 } }}
               
             >
-              <TableCell className="h-14" align="center" component="th" scope="row">
+              <TableCell align="center" component="th" scope="row">
                 <Link style={{cursor:"pointer", textDecoration: "none", color: "black"}} to={`/detail/${row._id}`}>{row.name}</Link>
               </TableCell>
               <TableCell align="center">{row.email}</TableCell>

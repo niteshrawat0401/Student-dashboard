@@ -49,7 +49,7 @@ const handleChange = (e) => {
   return (
     <>
          <div className="studentFormdiv">
-        <h3>Edit Student</h3>
+        <h3 class="my-5 bg-purple-700 w-[8rem] text-white h-8 text-center	py-1">Edit Student</h3>
         <form onSubmit={handleEdit} className="innerForm">
           <div>
             <label>Name</label>
