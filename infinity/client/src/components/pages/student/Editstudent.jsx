@@ -55,6 +55,7 @@ const handleChange = (e) => {
             <label>Name</label>
             <br />
             <input
+            className='border-2 border-red-50'
               type="text"
               name="name"
               placeholder="Studnet Name"
@@ -68,6 +69,7 @@ const handleChange = (e) => {
             <label>Email</label>
             <br />
             <input
+            className='border-2 border-red-50'
               type="email"
               name="email"
               placeholder="Email"
@@ -81,6 +83,7 @@ const handleChange = (e) => {
             <label>Mobile</label>
             <br />
             <input
+            className='border-2 border-red-50'
               type="number"
               name="mobile"
               placeholder="Mobile"
@@ -90,7 +93,7 @@ const handleChange = (e) => {
             />
           </div>
           <br />
-          <input className="studentsubmit" type="submit" value="Edit Student" />
+          <input className="studentsubmit border-2 bg-purple-700 text-gray-50	" type="submit" value="Edit Student" />
         </form>
       </div>
     </>
