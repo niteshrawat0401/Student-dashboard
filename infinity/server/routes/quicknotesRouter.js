@@ -80,7 +80,7 @@ quicknotesRouter.get("/quicknotes/:date", async(req, res)=>{
     let getQuicknotes = await Quicknotes.find({date: date});
     try {
         if(getQuicknotes){
-            return res.status(200).json({msg: "Notes get successfully", getQuicknotes});
+            return res.status(200).json(getQuicknotes);
         }
     } catch (error) {
         return res.status(200).json({msg: "Error occured while getting notes",  error});

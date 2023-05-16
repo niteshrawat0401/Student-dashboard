@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios';
+import { QuicknotesDisplay } from './QuicknotesDisplay';
 
 export const Quicknotes = () => {
     const [data, setData] = useState([])
@@ -20,8 +21,6 @@ export const Quicknotes = () => {
     const [month, setMonth] = useState(curMonth())
     const [yyyy, setYYYY] = useState(new Date().getFullYear().toString());
     const [year, setYear] = useState([]);
-
-    console.log(month);
 
     const months = [
         { label: "January", value: "01" },
@@ -70,15 +69,17 @@ export const Quicknotes = () => {
 
         let day = yyyy+ "-" + month + "-" + date
         let data = await axios.get(`http://localhost:8080/getquickNotes/quicknotes/${day}`)
-        console.log(data.data.getQuicknotes);
+        console.log("data",data.data[0].notes);
         if(data.data.length !== 0){
-            setData(data.data[0].getQuicknotes)
+            setData(data.data[0].notes)
         }
       }
 
       useEffect(()=>{
         getNotes()
-      },[yyyy, month, date])
+      },[yyyy, month, date]);
+
+      console.log("datas", data);
 
   return (
     <>
@@ -147,6 +148,68 @@ export const Quicknotes = () => {
                 ))
             }
         </select>
+
+        {/* <QuicknotesDisplay data={data}/> */}
+        <div 
+        // className={clas.notes_container}
+        >
+                  {data.length == 0 ? (
+                    <div>
+                      <img
+                        style={{ width: "20rem" }}
+                        src="https://easyhaionlinewebsite.s3.amazonaws.com/5437683.jpg"
+                      />
+                      <h1>Notes are not available</h1>
+                    </div>
+                  ) : (
+                    <div>
+                      <h2 style={{ fontSize: "22px" }}>QuickNotes</h2>
+                      <table
+                    //    className={clas.table_notes}
+                       >
+                        <thead
+                        //  className={clas.theader}
+                         >
+                          <tr>
+                            <th style={{ border: "1px solid black" }}>
+                              Subject
+                            </th>
+                            <th style={{ border: "1px solid black" }}>Notes</th>
+                            <th style={{ border: "1px solid black" }}>Q&A</th>
+                          </tr>
+                        </thead>
+
+                        <tbody
+                        //  className={clas.body}
+                         >
+                          { data.map((ele, i) => (
+                            <tr key={i}>
+                              <td
+                                style={{
+                                  border: "1px solid black",
+                                  fontSize: "15px",
+                                  fontWeight: "bold",
+                                }}
+                              >
+                                {ele.subject}
+                              </td>
+                              <td style={{ border: "1px solid black" }}>
+                                <a style={{color:"blue",textDecoration: "none", fontWeight:"500"}} target="_blank" href={ele.pdf}>
+                                  View
+                                </a>
+                              </td>
+                              <td style={{ border: "1px solid black" }}>
+                                <a style={{color:"blue",textDecoration: "none" ,fontWeight:"500"}} target="_blank" href={ele.qna}>
+                                  View
+                                </a>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+                </div>
     </div>
     </>
   )

@@ -94,8 +94,8 @@ export const Addquicknotes = () => {
         <br/>
         <input className='inpsub' type='text' name='subject' value={subject} placeholder='Subject' onChange={handleChange("subject")}/>
         <div className='filechoose'>
-        <input className='inpsubpdf' type='file' name='mediaLink' accept='application/pdf,application' onChange={handleFile}/>
-        <input className='inpsubqna' type='file' name='mediaLink' accept='application/pdf,application' onChange={handleQnafile}/>
+        <input className='inpsubpdf' type='file' name='pdfFile' accept='application/pdf,application' onChange={handleFile}/>
+        <input className='inpsubqna' type='file' name='qnaFile' accept='application/pdf,application' onChange={handleQnafile}/>
         </div>
         <br/>
         <input className='inpsubform' type='submit' value="Submit"/>
