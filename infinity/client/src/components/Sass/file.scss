@@ -39,4 +39,23 @@
 //  .secheader{ @include headercode(#10ac84, #fff);  }
 
 
+//  $color : #dac69b;
 
+//  @mixin givecolors {
+//     background-color: $color;
+//     border: 1px solid;
+//     padding-left: 50px;
+//     padding-right:  50px;
+//     text-align: center;
+//  }
+
+// .myself{
+//     @include givecolors;
+//     h3{
+//        color: blue;
+//        &:hover {color: green};
+//     };
+//     span{
+//         color:  red;
+//     }
+// }

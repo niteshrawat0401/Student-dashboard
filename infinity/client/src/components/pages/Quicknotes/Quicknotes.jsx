@@ -79,6 +79,12 @@ export const Quicknotes = () => {
         getNotes()
       },[yyyy, month, date]);
 
+      const handleOpenPDF = () => {
+        if (data) {
+          window.open(data, '_blank');
+        }
+      };
+
       console.log("datas", data);
 
   return (
@@ -194,12 +200,12 @@ export const Quicknotes = () => {
                                 {ele.subject}
                               </td>
                               <td style={{ border: "1px solid black" }}>
-                                <a style={{color:"blue",textDecoration: "none", fontWeight:"500"}} target="_blank" href={ele.pdf}>
+                                <a style={{color:"blue",textDecoration: "none", fontWeight:"500"}}  onClick={handleOpenPDF} target="_blank" href={ele.pdf}>
                                   View
                                 </a>
                               </td>
                               <td style={{ border: "1px solid black" }}>
-                                <a style={{color:"blue",textDecoration: "none" ,fontWeight:"500"}} target="_blank" href={ele.qna}>
+                                <a style={{color:"blue",textDecoration: "none" ,fontWeight:"500"}}  onClick={handleOpenPDF} target="_blank" href={ele.qna}>
                                   View
                                 </a>
                               </td>

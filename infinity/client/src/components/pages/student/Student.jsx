@@ -157,12 +157,13 @@ export const Student = () => {
   return (
     <>
       <div className="studentFormdiv">
-        <h3>Add Student</h3>
-        <form onSubmit={handleSubmit} className="innerForm">
+        <h3 className="my-5 bg-purple-700 w-[8rem] text-white h-8 text-center	py-1">Add Student</h3>
+        <form onSubmit={handleSubmit} className="innerForm ">
           <div>
             <label>Name</label>
             <br />
             <input
+            className="border-2 border-red-50"
               type="text"
               name="name"
               placeholder="Studnet Name"
@@ -176,6 +177,8 @@ export const Student = () => {
             <label>Email</label>
             <br />
             <input
+            className="border-2 border-red-50"
+
               type="email"
               name="email"
               placeholder="Email"
@@ -189,6 +192,8 @@ export const Student = () => {
             <label>Mobile</label>
             <br />
             <input
+            className="border-2 border-red-50"
+
               type="number"
               name="mobile"
               placeholder="Mobile"
@@ -198,7 +203,7 @@ export const Student = () => {
             />
           </div>
           <br />
-          <input className="studentsubmit" type="submit" value="Add Student" />
+          <input className="studentsubmit border-2 bg-purple-700 text-gray-50	" type="submit" value="Add Student" />
         </form>
       </div>
 
@@ -223,16 +228,16 @@ export const Student = () => {
             {studentData.length != 0 ? (
               <>
                <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 800 }} aria-label="simple table">
-        <TableHead>
+      <Table sx={{ minWidth: 800 }} aria-label="simple table" class="h-12">
+        <TableHead class="bg-purple-700 h-12">
           <TableRow>
-            <TableCell align="center">Name</TableCell>
-            <TableCell align="center">Email</TableCell>
-            <TableCell align="center">Mobile</TableCell>
-            <TableCell align="center">Edit</TableCell>
-            <TableCell align="center">Delete</TableCell>
-            <TableCell align="center">Active</TableCell>
-            <TableCell align="center">Status</TableCell>
+            <TableCell class="text-white"  align="center">Name</TableCell>
+            <TableCell class="text-white" align="center">Email</TableCell>
+            <TableCell class="text-white" align="center">Mobile</TableCell>
+            <TableCell class="text-white" align="center">Edit</TableCell>
+            <TableCell class="text-white" align="center">Delete</TableCell>
+            <TableCell class="text-white" align="center">Active</TableCell>
+            <TableCell class="text-white" align="center">Status</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -240,8 +245,9 @@ export const Student = () => {
             <TableRow
               key={row.name}
               sx={{ '&:last-child td, &:last-child th': { border: 1 } }}
+              
             >
-              <TableCell align="center" component="th" scope="row">
+              <TableCell className="h-14" align="center" component="th" scope="row">
                 <Link style={{cursor:"pointer", textDecoration: "none", color: "black"}} to={`/detail/${row._id}`}>{row.name}</Link>
               </TableCell>
               <TableCell align="center">{row.email}</TableCell>
