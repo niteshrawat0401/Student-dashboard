@@ -45,7 +45,7 @@ export const Login = () => {
   };
   return (
   <>
-  <div className="login_main_container">
+  <div className="login_main_container my-7">
       <h1  style={{ fontWeight: "bold", paddingTop: "2rem", fontSize: "21px" }}>Login User</h1>
       <form onSubmit={handleLogin}>
         <input
@@ -76,8 +76,8 @@ export const Login = () => {
         <br/>
         <input className="inpu4" type="submit" value="Log In" />
       </form>
-      <p>
-        Create an account <Link to={"/signup"}>Signup</Link>
+      <p className="my-4">
+        Create an account <Link className="text-blue-700	" to={"/signup"}>Signup</Link>
       </p>
     </div>
     </>

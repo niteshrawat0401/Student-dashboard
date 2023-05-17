@@ -5,7 +5,7 @@
     height: 26rem;
     width: 20%;
     margin: auto;
-    margin-top: 2rem;
+    margin-top: 4rem;
     text-align: center;
     border-radius: 6px;
   }
@@ -41,6 +41,6 @@
     font-weight: bold;
     font-size: 15px;
     cursor: pointer;
-    background-color: #18c683;
+    background-color: #4f46e5;
     border: none;
   }

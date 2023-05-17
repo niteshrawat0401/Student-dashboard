@@ -68,8 +68,8 @@ export const Signup = () => {
         <br/>
         <input className="inp5" type="submit" value="Sign Up" />
       </form>
-      <p>
-        Already have an account <Link to={"/login"}>Login</Link>
+      <p className="my-4">
+        Already have an account <Link className="text-blue-700	" to={"/login"}>Login</Link>
       </p>
     </div>
     </>
