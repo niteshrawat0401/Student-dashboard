@@ -38,9 +38,9 @@ export const StudentDetail = () => {
             <>
             {detail ? (
               <>
-              <table>
-                <thead>
-                  <tr>
+              <table >
+                <thead class="bg-purple-700 h-12">
+                  <tr class="text-white">
                     <th>Name</th>
                     <th>Email</th>
                     <th>Mobile</th>
@@ -52,7 +52,7 @@ export const StudentDetail = () => {
                 </thead>
 
                 {
-                  <tbody key={detail._id}>
+                  <tbody className='bg-purple-100' key={detail._id}>
                     <tr>
                       
                     <td> {detail.name}</td>

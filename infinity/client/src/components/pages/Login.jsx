@@ -24,9 +24,16 @@ export const Login = () => {
     axios
       .post("http://localhost:8080/auth/login", login)
       .then((res) => {
-        console.log(res.data);
+        localStorage.setItem("pvtroute", JSON.stringify({
+          isLoggin : true,
+          userId : res.data.userID,
+          token: res.data.accessToken,
+          userName: login.userName,
+          passWord: login.passWord,
+          userType: login.userType,
+        }))
         setlogin(res.data);
-        console.log(res.data);
+        // console.log(res.data);
         setlogin({ ...init });
         alert("Login sucessfully");
         navigate("/home")

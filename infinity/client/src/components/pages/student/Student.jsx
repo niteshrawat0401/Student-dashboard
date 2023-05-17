@@ -227,11 +227,11 @@ export const Student = () => {
             <>
             {studentData.length != 0 ? (
               <>
-               <TableContainer class="border-purple-700	" component={Paper}>
-      <Table sx={{ minWidth: 800 }} aria-label="simple table">
+               <TableContainer class="border-purple-700	bg-purple-100" style={{border: "1px solid white"}}  component={Paper}>
+      <Table sx={{ minWidth: 800 }} style={{border: "1px solid white"}} aria-label="simple table">
         <TableHead class="bg-purple-700 h-12 ">
-          <TableRow>
-            <TableCell class="text-white"  align="center">Name</TableCell>
+          <TableRow style={{border: "1px solid white"}}>
+            <TableCell class="text-white" align="center">Name</TableCell>
             <TableCell class="text-white" align="center">Email</TableCell>
             <TableCell class="text-white" align="center">Mobile</TableCell>
             <TableCell class="text-white" align="center">Edit</TableCell>
@@ -240,7 +240,7 @@ export const Student = () => {
             <TableCell class="text-white" align="center">Status</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        <TableBody style={{border: "1px solid #7e22ce"}}>
           {studentData.map((row) => (
             <TableRow
               key={row.name}
