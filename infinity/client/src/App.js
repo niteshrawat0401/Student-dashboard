@@ -11,6 +11,7 @@ import { StudentDetail } from './components/pages/student/StudentDetail';
 import {Quicknotes} from './components/pages/Quicknotes/Quicknotes';
 import { Addquicknotes } from './components/pages/Quicknotes/Addquicknotes';
 import  ScssFile  from './components/pages/ScssFile';
+import { PrivateRoute } from './components/pages/PrivateRoute';
 
 function App() {
   return (
@@ -19,7 +20,12 @@ function App() {
       <Routes>
         <Route path='/' element={<Signup/>}/>
         <Route path='/login' element={<Login/>}/>
-        <Route path='/student' element={<Student/>}/>
+        <Route path='/student' element={
+        <PrivateRoute>
+        <Student/>
+        </PrivateRoute>
+        }/>
+        
         <Route path='/home' element={<Home/>}/>
         <Route path='/edit/:id' element={<Editstudent/>}/>
         <Route path='/detail/:id' element={<StudentDetail/>}/>

@@ -1,8 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./css/Navbar.css";
 
 export const Navbar = () => {
+
+
   return (
     <div className="nav_div bg-purple-700	text-white">
       <div className="innerDiv py-4	">
@@ -10,7 +12,7 @@ export const Navbar = () => {
         <p className="text-base	"><Link to="/student">student</Link></p>
         {/* <p><Link to="/Products">Products</Link></p> */}
         <p className="text-base	"><Link to="/quicknotes">Quicknotes</Link></p>
-        <p className="text-base	"><Link to="/login">Logout</Link></p>
+ 
       </div>
     </div>
   );
