@@ -3,7 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import "./css/Navbar.css";
 
 export const Navbar = () => {
+  const navigate = useNavigate()
+  let pvtroute = JSON.parse(localStorage.getItem("pvtroute"))
+  console.log("pvt",pvtroute);
 
+  const logout = () =>{
+    localStorage.removeItem("pvtroute")
+    navigate("/login")
+  }
 
   return (
     <div className="nav_div bg-purple-700	text-white">
@@ -12,7 +19,8 @@ export const Navbar = () => {
         <p className="text-base	"><Link to="/student">student</Link></p>
         {/* <p><Link to="/Products">Products</Link></p> */}
         <p className="text-base	"><Link to="/quicknotes">Quicknotes</Link></p>
- 
+        {pvtroute===null? (<Link to={"/login"} className="text-base" onClick={()=> navigate("/login")}>Login </Link>):
+        (<p  className="text-base" onClick={logout}>Logout <Link className="text-base">{pvtroute.userName}</Link></p>)}
       </div>
     </div>
   );
