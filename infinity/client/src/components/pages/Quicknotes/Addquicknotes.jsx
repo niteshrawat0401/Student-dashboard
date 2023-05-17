@@ -36,7 +36,7 @@ export const Addquicknotes = () => {
         const selectedQnaFile = e.target.files[0];
         setQna(selectedQnaFile);
     } 
-     console.log(qna);
+    //  console.log(qna);
 
     const handleSubmit = async(e) =>{
         e.preventDefault();
@@ -59,7 +59,7 @@ export const Addquicknotes = () => {
             reader.onloadend = () => {
                 const base64String = reader.result;
                 console.log("base64String", base64String);
-                console.log("response", response.data);
+                // console.log("response", response.data);
             };
         })
         .catch(error => console.error(error));
@@ -84,7 +84,7 @@ export const Addquicknotes = () => {
         // .catch(error => console.error(error));
     }
 
-    console.log("mediaLink", mediaLink);
+    // console.log("mediaLink", mediaLink);
 
   return (
     <>

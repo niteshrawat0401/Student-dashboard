@@ -115,7 +115,7 @@ export const Home = () => {
         break;
     }
   };
-console.log(productType);
+// console.log(productType);
   const handleIssueTypesChange = (event) => {
     const selectedIssueTypes = Array.from(event.target.selectedOptions, option => option.value);
     setIssueTypes(selectedIssueTypes);
@@ -126,7 +126,7 @@ console.log(productType);
     const value = event.target.value;
     setIssueDescription(value);
   };
-  console.log(issueDescription);
+  // console.log(issueDescription);
 
   const handlePolicyDocumentChange = (event) => {
     const file = event.target.files[0];
@@ -142,7 +142,7 @@ console.log(productType);
     )
     .then((res)=>{
         setData(res.data)
-        console.log("res", res);
+        // console.log("res", res);
     })
     .catch((err)=>{
         console.log("err", err);

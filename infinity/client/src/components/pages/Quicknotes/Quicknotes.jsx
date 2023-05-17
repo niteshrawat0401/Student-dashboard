@@ -69,7 +69,7 @@ export const Quicknotes = () => {
 
         let day = yyyy+ "-" + month + "-" + date
         let data = await axios.get(`http://localhost:8080/getquickNotes/quicknotes/${day}`)
-        console.log("data",data.data[0].notes);
+        // console.log("data",data.data[0].notes);
         if(data.data.length !== 0){
             setData(data.data[0].notes)
         }
@@ -85,7 +85,7 @@ export const Quicknotes = () => {
         }
       };
 
-      console.log("datas", data);
+      // console.log("datas", data);
 
   return (
     <>

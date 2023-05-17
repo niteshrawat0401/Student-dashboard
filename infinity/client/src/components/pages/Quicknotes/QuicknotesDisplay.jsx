@@ -1,7 +1,7 @@
 import React from 'react'
 
 export const QuicknotesDisplay = ({data}) => {
-    console.log("data", data);
+    // console.log("data", data);
   return (
     <div>
         <div 

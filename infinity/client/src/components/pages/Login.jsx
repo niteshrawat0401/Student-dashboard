@@ -36,7 +36,7 @@ export const Login = () => {
         // console.log(res.data);
         setlogin({ ...init });
         alert("Login sucessfully");
-        navigate("/home")
+        navigate("/student")
       })
       .catch((err) => {
         alert("Type not found");
@@ -77,7 +77,7 @@ export const Login = () => {
         <input className="inpu4" type="submit" value="Log In" />
       </form>
       <p>
-        Create an account <Link to={"/"}>Signup</Link>
+        Create an account <Link to={"/signup"}>Signup</Link>
       </p>
     </div>
     </>

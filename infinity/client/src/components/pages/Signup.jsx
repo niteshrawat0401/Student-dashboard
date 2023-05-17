@@ -24,7 +24,7 @@ export const Signup = () => {
     axios
       .post("http://localhost:8080/auth/signup", signup)
       .then(() => {
-        console.log(signup);
+        // console.log(signup);
         navigate("/login");
       })
       .catch((err) => {
