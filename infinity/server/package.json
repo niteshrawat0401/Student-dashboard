@@ -1,17 +1,22 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": "echo \"No build specified\" && exit 1",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
+"name": "server",
+"version": "1.0.0",
+"description": "",
+"main": "index.js",
+"scripts": {
+  "start": "node index.js"
+},
+"repository": {
+  "type": "git",
+  "url": "git+https://github.com/niteshrawat0401/infinty-assurance.git"
+},
+"author": "",
+"license": "ISC",
+"bugs": {
+  "url": "https://github.com/niteshrawat0401/infinty-assurance/issues"
+},
+"homepage": "https://github.com/niteshrawat0401/infinty-assurance#readme",
+"dependencies": {
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
@@ -21,5 +26,7 @@
     "mongoose": "^7.0.3",
     "multer": "^1.4.5-lts.1",
     "nodemon": "^2.0.22"
-  }
 }
+}
+
+
