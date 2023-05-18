@@ -3,6 +3,7 @@ const connection = require("./db/db.js");
 const authRouter = require("./routes/authRouter.js");
 const studentRouter = require("./routes/studentRouter.js");
 const authentication = require("./routes/jwt.js");
+require("dotenv").config()
 
 const cors = require("cors");
 const quicknotesRouter = require("./routes/quicknotesRouter.js");
