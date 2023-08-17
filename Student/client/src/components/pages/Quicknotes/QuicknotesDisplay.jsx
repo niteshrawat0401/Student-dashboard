@@ -48,7 +48,7 @@ export const QuicknotesDisplay = ({data}) => {
                                 {ele.subject}
                               </td>
                               <td style={{ border: "1px solid black" }}>
-                                <a style={{color:"blue",textDecoration: "none", fontWeight:"500"}} target="_blank" handleOpenPDF  href={ele.pdf}>
+                                <a style={{color:"blue",textDecoration: "none", fontWeight:"500"}} target="_blank" handleOpenPDF  href={ele.pdf && URL.createObjectURL(ele.pdf)}>
                                   View
                                 </a>
                               </td>

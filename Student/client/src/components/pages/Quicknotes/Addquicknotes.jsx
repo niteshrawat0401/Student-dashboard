@@ -36,7 +36,7 @@ export const Addquicknotes = () => {
         const selectedQnaFile = e.target.files[0];
         setQna(selectedQnaFile);
     } 
-    //  console.log(qna);
+    //  console.log(mediaLink);
 
     const handleSubmit = async(e) =>{
         e.preventDefault();
@@ -88,7 +88,7 @@ export const Addquicknotes = () => {
 
   return (
     <>
-    <div className='quicknotesdiv'>
+    <div className='quicknotesdiv text-'>
         <form className='notesform' onSubmit={handleSubmit}>
         <input className='inpdate' name='date' value={date} type='date'onChange={handleChange("date")}/>
         <br/>

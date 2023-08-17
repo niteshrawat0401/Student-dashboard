@@ -28,7 +28,7 @@ authRouter.post("/signup", async (req, res) => {
 // Login
 authRouter.post("/login", async (req, res) => {
   const { userName, passWord, userType } = req.body;
-  const user = await Users.findOne({  userType: userType });
+  const user = await Users.findOne({  userName: userName });
   if (!user) {
     return res.status(400).json({ msg: "User not found" });
   }
@@ -58,7 +58,7 @@ authRouter.post("/login", async (req, res) => {
         return res.status(400).json({msg: "password does not match"})
     }
   } catch (error) {
-    return res.status(500).json({msg: "Server error"})
+    return res.status(500).json({msg: "Server error", Error : error})
   }
 });
 
